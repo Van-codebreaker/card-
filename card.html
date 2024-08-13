@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <div class="container">
+      <img src="img2.jpg" />
+      <img src="img3.jpg" />
+      <img src="img4.jpg" />
+    </div> -->
+    <div class="card23">
+      <form id="form">
+        <div class="card_first_lastname">
+          <label>
+            <div class="input_control">
+              <p class="nametext">First Name</p>
+              <input type="text" id="fn_input" name="firstname" />
+              <p class="error"></p>
+              <!-- required -->
+            </div>
+          </label>
+          <label>
+            <div class="input_control">
+              <p class="nametext">Last Name</p>
+              <input type="text" id="ln_input" name="lastname" />
+              <p class="error"></p></div
+          ></label>
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <style>
+      body {
+        /* padding: 10px; */
+        background-color: rgb(46, 45, 45);
+        color: white;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      /* 
+      .container {
+        margin: 100px 0 0 200px;
+        width: 70%;
+        height: 450px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        
+      }
+      .container img {
+        width: 10%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 2px solid gray;
+        transition: all ease-in-out 0.5s;
+      }
+      .container img:hover {
+        width: 25%;
+      } */
+
+      .card23 {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        border-radius: 15px;
+        width: 250px;
+        height: 330px;
+        background-color: rgb(36, 36, 36);
+        position: relative;
+      }
+
+      .input_control input:focus {
+        outline: 0;
+      }
+      .input_control.success input {
+        border-color: green;
+        border-radius: 4px;
+      }
+      .input_control.error input {
+        border-color: red;
+        border-radius: 4px;
+      }
+
+      .input_control .error {
+        color: red;
+        font-size: 9px;
+        height: 13px;
+      }
+      /* .input_control .success {
+        color: green;
+        font-size: 9px;
+        height: 13px;
+      } */
+
+      @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+      .card23::after {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-image: conic-gradient(
+          from var(--angle),
+          #ff4545,
+          #00ff99,
+          #006aff,
+          #ff0095,
+          #ff4545,
+          #00ff99,
+          #006aff,
+          #ff0095,
+          #ff4545
+        );
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        z-index: -1;
+        padding: 3px;
+        border-radius: 10px;
+        animation: 3s spin linear infinite;
+      }
+
+      @keyframes spin {
+        from {
+          --angle: 0deg;
+        }
+        to {
+          --angle: 360deg;
+        }
+      }
+    </style>
+
+    <script>
+      const form = document.getElementById("form");
+      const firstname = document.getElementById("fn_input");
+      const lastname = document.getElementById("ln_input");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        validinput();
+      });
+
+      const setError = (element, message) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector(".error");
+
+        errorDisplay.innerText = message;
+        inputControl.classList.add("error");
+        inputControl.classList.remove("success");
+      };
+
+      const setSuccess = (element) => {
+        const inputControl = element.parentElement;
+        const errorDisplay = inputControl.querySelector(".error");
+
+        errorDisplay.innerText = "";
+        inputControl.classList.add("success");
+        inputControl.classList.remove("error");
+      };
+
+      const validinput = () => {
+        const fnvalue = firstname.value.trim();
+        const lnvalue = lastname.value.trim();
+
+        if (fnvalue === "") {
+          setError(firstname, "First name is Required");
+        } else {
+          setSuccess(firstname);
+        }
+
+        if (lnvalue === "") {
+          setError(lastname, "last name is Required");
+        } else {
+          setSuccess(lastname);
+        }
+      };
+    </script>
+  </body>
+</html>
